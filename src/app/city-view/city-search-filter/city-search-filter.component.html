@@ -1,0 +1,11 @@
+<div block="search-form">
+    <form elem="master-form" novalidate [formGroup]="citySearchform" (ngSubmit)="onSubmit()">
+        <div >
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>City Name</mat-label>
+                <input matInput placeholder="Placeholder" formControllerName = "cityName">
+              </mat-form-field>  
+              <button (click)="goToCSVImport()">Edit All Search Result</button> 
+        </div>
+    </form>
+</div>

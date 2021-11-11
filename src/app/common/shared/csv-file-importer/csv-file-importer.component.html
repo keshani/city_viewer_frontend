@@ -1,0 +1,28 @@
+<div block="csv-documents">
+    <div elem="doc-heading">
+        <h2>{{title}}</h2>
+    </div>
+    <div elem="doc-description">
+        <p elem="required-fields" [innerHTML]="requiredFieldNames"></p>
+    </div>
+    <div elem="doc-content">
+        <div elem="doc-upload" appDnd (fileDropped)="onFileDropped($event)">
+            <div elem="file-item" *ngIf='fileToUpload else elseBlock'>
+                   <p>{{fileToUpload?.name}} - <mat-icon elem="close" svgIcon="close" (click)="removeFile()"></mat-icon></p>
+            </div>
+            <ng-template #elseBlock>
+                <div elem="drag-fle-msg">
+                    Drag files here
+                    <br>
+                    <span>- or -</span>
+                </div>
+            </ng-template>
+            <input type="file" #fileDropRef (change)="fileBrowseHandler($event)"
+                [ngClass]="(fileToUpload)? 'file-selected' : 'custom-file-input'" title=" ">
+        </div>
+    </div>
+    <div elem="control" class="d-flex align-items-center justify-content-end">
+        <button type="button" (click)="cancel()" elem="cancel-btn">CANCEL</button>
+        <button type="button" (click)="onUpload()" elem="upload-btn" [disabled]='!(fileToUpload)'>IMPORT NOW</button>
+    </div>
+</div>
