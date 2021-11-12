@@ -5,7 +5,7 @@
     </div>
     <div elem = "searchFilter"> 
         <div elem = "title"> Search Filters</div>
-        <app-city-search-filter></app-city-search-filter>
+        <app-city-search-filter (searchSubmit) = "onSearch($event)"></app-city-search-filter>
     </div>
     <div elem = "mainCityGrid">
         <ngx-datatable class="material"

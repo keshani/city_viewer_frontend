@@ -3,9 +3,12 @@
         <div >
             <mat-form-field appearance="outline" color="primary">
                 <mat-label>City Name</mat-label>
-                <input matInput placeholder="Placeholder" formControllerName = "cityName">
+                <input matInput placeholder="Placeholder" formControlName = "cityName">
               </mat-form-field>  
               <button (click)="goToCSVImport()">Edit All Search Result</button> 
         </div>
+        <div block="controls">
+              <button mat-flat-button type="submit" class="button primary">Search</button>
+          </div>
     </form>
 </div>

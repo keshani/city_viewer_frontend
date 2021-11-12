@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import {isArray} from 'rxjs/internal-compatibility';
@@ -29,7 +29,17 @@ export class ApiCallService {
   }
 
   constructApiCall(method: RequestMethods, url:string, configObject:any ) : Observable<Object> {
-     const fullUrl = SERVICE_URL+url;
-     return this.http.request(method, fullUrl, configObject).pipe(catchError(error => throwError(error)));
+      let fullUrl = SERVICE_URL+url;
+      switch (method) {
+        case 'GET':
+          return this.createGetRequest(fullUrl,configObject);
+        default:
+          return this.http.request(method, fullUrl, configObject).pipe(catchError(error => throwError(error)));
+      }
   }
+
+  private createGetRequest( url:string, configObject:any)  : Observable<Object>  {
+   return this.http.get(url, {params:configObject}); 
+  }
+
 }

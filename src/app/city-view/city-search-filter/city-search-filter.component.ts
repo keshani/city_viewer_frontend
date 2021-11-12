@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { OuterSubscriber } from 'rxjs/internal-compatibility';
 import { CsvFileImporterComponent } from 'src/app/common/shared/csv-file-importer/csv-file-importer.component';
+import { CityViewUtil } from '../city-view-util';
 
 @Component({
   selector: 'app-city-search-filter',
@@ -10,6 +12,7 @@ import { CsvFileImporterComponent } from 'src/app/common/shared/csv-file-importe
 })
 export class CitySearchFilterComponent implements OnInit {
   
+  @Output() searchSubmit = new EventEmitter<any>();
   public citySearchform: any;
 
   constructor(
@@ -27,7 +30,10 @@ export class CitySearchFilterComponent implements OnInit {
     return new FormGroup(groups);
   }
 
-  public onSubmit() {}
+  public onSubmit() {
+      const formValues =  CityViewUtil.getNonEmptyFormValues(this.citySearchform);
+      this.searchSubmit.emit(formValues);
+  }
 
   goToCSVImport() {
     const sendData = {

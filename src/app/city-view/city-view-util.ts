@@ -1,5 +1,7 @@
 import { TemplateRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { TableColumn } from '@swimlane/ngx-datatable';
+import { isArray } from 'rxjs/internal/util/isArray';
 
 export class CityViewUtil {
 
@@ -29,5 +31,22 @@ export class CityViewUtil {
         ];
         return columnList;
     }
+
+    public  static getNonEmptyFormValues(form: FormGroup): any {
+        const formValue = Object.keys(form.getRawValue()).reduce((formKey, key) => {
+          const newFormKey:any = formKey;
+          if (form.getRawValue()[key]) {
+            if (isArray(form.getRawValue()[key])) {
+              if (form.getRawValue()[key].length > 0) {
+                newFormKey[key] = form.getRawValue()[key];
+              }
+            } else {
+              newFormKey[key] = form.getRawValue()[key];
+            }
+          }
+          return newFormKey;
+        }, {});
+        return formValue;
+      }
 
 }

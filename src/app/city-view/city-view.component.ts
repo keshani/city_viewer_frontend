@@ -12,23 +12,30 @@ export class CityViewComponent implements OnInit {
 
   public dataSource:any;
   public columns:any;
+  public searchCriteria:any;
 
   constructor(private cityService: CityService) { }
 
   ngOnInit(): void {
     this.createCityGrid();
-    this.populateCityList();
+ //   this.populateCityList();
 
+  }
+
+  public onSearch(formData:any) {
+       this.searchCriteria = formData;
+       const requestPayLoad = {
+         pageSize: 100,
+         pageNumber: 1,
+         ...formData
+       }
+       this.cityService.getListOfCities(requestPayLoad).subscribe((cityList) => {
+        this.dataSource = cityList;
+   });
   }
 
   private createCityGrid() {
     this.columns = CityViewUtil.getCityGridColumnList();  
-  }
-
-  private populateCityList() {
-       this.cityService.getListOfCities().subscribe((cityList) => {
-            this.dataSource = cityList;
-       });
   }
 
 
