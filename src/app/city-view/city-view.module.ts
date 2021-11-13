@@ -12,13 +12,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CsvFileImporterModule } from '../common/shared/csv-file-importer/csv-file-importer.module';
+import { DocumnetUploaderModule } from '../common/shared/document-uploader/document-uploader.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CityEditComponent } from './city-edit/city-edit.component';
 
 @NgModule({
   declarations: [
     CityViewComponent,
-    CitySearchFilterComponent
+    CitySearchFilterComponent,
+    CityEditComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    CsvFileImporterModule,
+    DocumnetUploaderModule,
     MatDialogModule
   ],
   exports: [

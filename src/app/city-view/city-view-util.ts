@@ -5,8 +5,12 @@ import { isArray } from 'rxjs/internal/util/isArray';
 
 export class CityViewUtil {
 
-    public static getCityGridColumnList(): TableColumn[] {
+    public static getCityGridColumnList(cellTemplates: TemplateRef<any>[]): TableColumn[] {
         let columnList = [
+            {
+              prop: 'action', name: 'Action', width: 20, minWidth: 50, cellTemplate: cellTemplates[0], cellClass: 'truncate-cell',
+              headerTemplate: '', frozenLeft: true, sortable: false, resizeable: false
+           },
             {
                 prop: 'cityName', name: 'City Name', width: 150, minWidth: 70, cellTemplate: '', cellClass: 'truncate-cell',
                 headerTemplate: '', frozenLeft: false, resizeable: true

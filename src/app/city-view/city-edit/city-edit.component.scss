@@ -1,0 +1,28 @@
+.editPane {
+    width: 780px;
+    // height: 100vh;
+    height: calc(100vh - 25px);
+    box-shadow: 0 0 24px 0 rgba(29, 46, 64, 0.1), 0 24px 24px 0 rgba(29, 46, 64, 0.1);
+    background-color: #ffffff;
+    // overflow-y: auto;
+    // overflow: scroll;
+    position: fixed;
+    // left: 1693px;
+    //left: 1635px;
+    //left: 100px;
+    //eft: calc(100vw - 780px);
+    right: 800px;
+    padding: 32px;
+    margin: 0 32px 32px 32px;
+    overflow-y: auto;
+    border-top: 8px solid #508be4;
+  
+    &__close {
+      display: block;
+      height: 25px;
+      width: 17.5px;
+      float: right;
+      height: 17.5px;
+    }
+  }
+ 

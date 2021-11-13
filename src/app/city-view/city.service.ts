@@ -17,4 +17,7 @@ export class CityService {
   public getListOfCities(searchCriteria:any): Observable<object> {
     return this.apicallservice.constructApiCall(RequestMethods.GET, "/fetchListOfCities",searchCriteria);
   }
+  public updateCityInfo(cityInfo:any): Observable<object>  {
+     return this.apicallservice.constructApiCall(RequestMethods.PUT, "/updateCityInfo",cityInfo);
+  }
 }

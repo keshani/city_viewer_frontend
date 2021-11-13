@@ -5,11 +5,11 @@ import { Subject } from 'rxjs';
 import { ApiCallService, RequestMethods } from '../../api-call.service';
 
 @Component({
-  selector: 'app-csv-file-importer',
-  templateUrl: './csv-file-importer.component.html',
-  styleUrls: ['./csv-file-importer.component.scss']
+  selector: 'app-documnet-uploader',
+  templateUrl: './document-uploader.component.html',
+  styleUrls: ['./document-uploader.component.scss']
 })
-export class CsvFileImporterComponent implements OnInit, OnDestroy {
+export class DocumentUploaderComponent implements OnInit, OnDestroy {
   // ==================================  DEFINE CHILD COMPORNENT START ======================================
   @ViewChild('fileDropRef', { static: false })
   fileDropEl: any;
@@ -26,7 +26,7 @@ export class CsvFileImporterComponent implements OnInit, OnDestroy {
   // ==================================  DEFINE ATTRIBUTES END ===============================================
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private mdDialogRef: MatDialogRef<CsvFileImporterComponent>,
+              private mdDialogRef: MatDialogRef<DocumentUploaderComponent>,
               private apiCallService: ApiCallService
   ) {
   }

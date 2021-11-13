@@ -1,0 +1,31 @@
+<div block="editPane">
+    <form elem="master-form" novalidate [formGroup]="cityEditform" (ngSubmit)="onSubmit()">
+        <div >
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>City Name</mat-label>
+                <input matInput formControlName = "cityName">
+            </mat-form-field>  
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>City Description</mat-label>
+                <input matInput formControlName = "cityDescription">
+            </mat-form-field>  
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName = "country">
+            </mat-form-field>  
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Latitude</mat-label>
+                <input matInput placeholder="Placeholder" formControlName = "latitude">
+            </mat-form-field>  
+            <mat-form-field appearance="outline" color="primary">
+                <mat-label>Longitude</mat-label>
+                <input matInput placeholder="Placeholder" formControlName = "longitude">
+            </mat-form-field>  
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/500px-Skyscrapers_of_Shinjuku_2009_January.jpg"  height="500px"/>
+        </div>
+        <div block="controls">
+              <button mat-flat-button type="submit" class="button primary">SAVE CHANGES</button>
+              <button mat-flat-button type="button" class="button primary" (click)="cancel()">CANCEL</button>
+          </div>
+    </form>
+</div>

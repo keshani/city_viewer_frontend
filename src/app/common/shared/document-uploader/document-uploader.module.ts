@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CsvFileImporterComponent } from './csv-file-importer.component';
+import { DocumentUploaderComponent } from './document-uploader.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,9 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
-  declarations: [CsvFileImporterComponent],
+  declarations: [DocumentUploaderComponent],
   exports: [
-    CsvFileImporterComponent
+    DocumentUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -19,4 +19,4 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule
   ]
 })
-export class CsvFileImporterModule { }
+export class DocumnetUploaderModule { }

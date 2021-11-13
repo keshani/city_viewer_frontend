@@ -25,6 +25,11 @@
         [headerTemplate]="col.headerTemplate"
         [frozenLeft]="col.frozenLeft">
       </ngx-datatable-column>
+
+      <ng-template #viewMenuTmpl let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+        <mat-icon  (click)="goToEditCityInfo(row)">visibility</mat-icon>
+        <mat-icon (click)="goToUploadDocumnt()">file_upload</mat-icon>
+     </ng-template>
       
       </ngx-datatable>
     </div>

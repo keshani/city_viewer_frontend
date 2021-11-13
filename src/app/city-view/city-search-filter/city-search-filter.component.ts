@@ -1,8 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { OuterSubscriber } from 'rxjs/internal-compatibility';
-import { CsvFileImporterComponent } from 'src/app/common/shared/csv-file-importer/csv-file-importer.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { CityViewUtil } from '../city-view-util';
 
 @Component({
@@ -34,22 +32,5 @@ export class CitySearchFilterComponent implements OnInit {
       const formValues =  CityViewUtil.getNonEmptyFormValues(this.citySearchform);
       this.searchSubmit.emit(formValues);
   }
-
-  goToCSVImport() {
-    const sendData = {
-      title: 'Import Equipment via CSV',
-      supportedFileFormats: 'Supported File Format: CSV',
-      requiredFieldNames: 'Required Columns(in order from left to right): Organization Name, Equipment ID, Fleet Code,<br>' +
-        'Sub Fleet Code, Fleet Customer Name, Fleet Commodity, Fleet Comment, Fleet Comment 2, <br>' +
-        'Testing Status',
-      screenName: 'FLEET',
-      requestName: 'fleetManagementCSVImport'
-    };
-    const dialogConfig: MatDialogConfig = new MatDialogConfig();
-    dialogConfig.panelClass = 'csv-import-panel';
-    dialogConfig.disableClose = true;
-    dialogConfig.data = sendData;
-
-    const dialogRef = this.dialog.open(CsvFileImporterComponent, dialogConfig);
-  }
+  
 }

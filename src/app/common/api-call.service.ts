@@ -9,6 +9,7 @@ export enum RequestMethods {
   GET = 'GET',
   POST = 'POST',
   DELETE = 'DELETE',
+  PUT = 'PUT'
 }
 
 @Injectable({
@@ -33,6 +34,8 @@ export class ApiCallService {
       switch (method) {
         case 'GET':
           return this.createGetRequest(fullUrl,configObject);
+        case 'PUT':
+            return this.createPutRequest(fullUrl,configObject);
         default:
           return this.http.request(method, fullUrl, configObject).pipe(catchError(error => throwError(error)));
       }
@@ -41,5 +44,8 @@ export class ApiCallService {
   private createGetRequest( url:string, configObject:any)  : Observable<Object>  {
    return this.http.get(url, {params:configObject}); 
   }
+  private createPutRequest( url:string, configObject:any)  : Observable<Object>  {
+    return this.http.put(url, configObject); 
+   }
 
 }
