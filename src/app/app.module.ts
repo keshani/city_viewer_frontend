@@ -9,6 +9,7 @@ import { CityViewModule } from './city-view/city-view.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { CitySearchFilterComponent } from './city-view/city-search-filter/city-search-filter.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CitySearchFilterComponent } from './city-view/city-search-filter/city-s
     CityViewModule,
     HttpClientModule,
     NgxDatatableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

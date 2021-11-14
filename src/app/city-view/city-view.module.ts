@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocumnetUploaderModule } from '../common/shared/document-uploader/document-uploader.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CityEditComponent } from './city-edit/city-edit.component';
+import { SnackBarModule } from '../common/shared/snack-bar/snack-bar.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CityEditComponent } from './city-edit/city-edit.component';
     FormsModule,
     ReactiveFormsModule,
     DocumnetUploaderModule,
-    MatDialogModule
+    MatDialogModule,
+    SnackBarModule
   ],
   exports: [
     CityViewComponent

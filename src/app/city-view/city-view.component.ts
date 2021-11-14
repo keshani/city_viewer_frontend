@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ApiCallService, RequestMethods } from '../common/api-call.service';
+import { Page } from '../common/models/page';
 import { DocumentUploaderComponent } from '../common/shared/document-uploader/document-uploader.component';
 import { CityEditComponent } from './city-edit/city-edit.component';
 import { CityViewUtil } from './city-view-util';
@@ -25,31 +26,34 @@ export class CityViewComponent implements OnInit, AfterViewInit {
   public selectedRow:any;
   private destroy$:Subject<any>;
   public templateRefList: TemplateRef<any>[];
+  public page = new Page();
 
   constructor(private cityService: CityService,
               private dialog: MatDialog) {
     this.dataSource = [];
 this.destroy$ = new Subject();
  this.templateRefList = [];
+ this.page.pageNumber = 0;
+ this.page.pageSize = 20;
    }
 
   ngOnInit(): void {
-
+    this.setPage({ offset: 0 });
   }
   ngAfterViewInit(): void {
     this.createTemplateRefList();
     this.createCityGrid();
   }
-
+  setPage(pageInfo:any) {
+    this.page.pageNumber = pageInfo.offset;
+    this.onSearch(this.searchCriteria);
+  }
   public onSearch(formData:any) {
        this.searchCriteria = formData;
-       const requestPayLoad = {
-         pageSize: 100,
-         pageNumber: 0,
-         ...formData
-       }
+       const requestPayLoad = CityViewUtil.getPagingRequest(formData, this.page);
        this.cityService.getListOfCities(requestPayLoad).subscribe((data:any) => {
         this.dataSource = data.content;
+        this.page.totalRowCount = data.totalElements;
    });
   }
 
@@ -64,6 +68,7 @@ this.destroy$ = new Subject();
   public goToEditCityInfo(selectedRow: any) {
     this.selectedRow = selectedRow;
     const sendData = {
+      selectedRecord: selectedRow
     };
     const dialogConfig: MatDialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -79,8 +84,13 @@ this.destroy$ = new Subject();
 
   }
 
-  public goToUploadDocumnt() {
+  public goToUploadDocumnt(selectedRow:any) {
     const sendData = {
+    belongsTo: selectedRow.id,
+    docId: selectedRow.cityImages[0].id,
+    docType: 'IMAGE',
+    screenName: 'City Image Upload',
+    description: 'Upload City Image here. Maximum file size will be 50MB'
     };
     const dialogConfig: MatDialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'csv-import-panel';

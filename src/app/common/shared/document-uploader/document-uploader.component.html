@@ -1,9 +1,9 @@
 <div block="csv-documents">
     <div elem="doc-heading">
-        <h2>{{title}}</h2>
+        <h2>{{screenName}}</h2>
     </div>
     <div elem="doc-description">
-        <p elem="required-fields" [innerHTML]="requiredFieldNames"></p>
+        <p elem="required-fields" [innerHTML]="description"></p>
     </div>
     <div elem="doc-content">
         <div elem="doc-upload" appDnd (fileDropped)="onFileDropped($event)">

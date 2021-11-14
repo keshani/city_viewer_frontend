@@ -18,11 +18,12 @@ export class DocumentUploaderComponent implements OnInit, OnDestroy {
   private requestPayload: any = {};
   public fileToUpload: any;
   public title = '';
-  public supportedFileFormats = '';
-  public requiredFieldNames = '';
   public screenName = '';
   public destroy$ = new Subject();
-  public requestName = '';
+  public belongsTo:any;
+  private docType:any;
+  public description: any;
+  public docId:any;
   // ==================================  DEFINE ATTRIBUTES END ===============================================
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -47,9 +48,10 @@ export class DocumentUploaderComponent implements OnInit, OnDestroy {
 
   public onUpload() {
     const fd = new FormData();
-    let obj = {name:"test"};
-    fd.append('name', "test");
     fd.append('uploadFile', this.fileToUpload);
+    fd.append('belongsToId', this.belongsTo);
+    fd.append('docType', this.docType);
+    fd.append('id', this.docId);
    // const configBody  = {body:{document:{name:"test"},  fd}};
      const configBody  = {body:fd};
     this.apiCallService.constructApiCall(RequestMethods.POST,"/uploadDocument",configBody).subscribe(data => {
@@ -107,11 +109,11 @@ export class DocumentUploaderComponent implements OnInit, OnDestroy {
   }
 
   private setPassData(data: any) {
-    this.title = data.title;
-    this.supportedFileFormats = data.supportedFileFormats;
-    this.requiredFieldNames = data.requiredFieldNames;
+    this.belongsTo = data.belongsTo;
+    this.docType = data.docType;
     this.screenName = data.screenName;
-    this.requestName = data.requestName;
+    this.description = data.description;
+    this.docId = data.docId;
   }
   // ========================================= OTHER METHODS END ========================================
 }

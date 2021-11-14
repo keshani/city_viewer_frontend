@@ -10,13 +10,17 @@
     <div elem = "mainCityGrid">
         <ngx-datatable class="material"
         [rows]="dataSource"
+        [columns]="columns"
         [columnMode]="'force'"
         [headerHeight]="50" 
         [footerHeight]="50"
-        [rowHeight]="50" 
-        [scrollbarV]="true"
-        [columns]="columns">
-      
+        [rowHeight]="45" 
+        [externalPaging]="true"
+        [count]="page.totalRowCount"
+        [offset]="page.pageNumber"
+        [limit]="page.pageSize"
+        (page)="setPage($event)">
+
         <ngx-datatable-column elem="column" *ngFor="let col of columns; let i = index"
         [width]="col.width"
         [name]="col.name"
@@ -28,7 +32,7 @@
 
       <ng-template #viewMenuTmpl let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
         <mat-icon  (click)="goToEditCityInfo(row)">visibility</mat-icon>
-        <mat-icon (click)="goToUploadDocumnt()">file_upload</mat-icon>
+        <mat-icon (click)="goToUploadDocumnt(row)">file_upload</mat-icon>
      </ng-template>
       
       </ngx-datatable>

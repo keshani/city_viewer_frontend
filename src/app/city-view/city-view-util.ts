@@ -2,13 +2,14 @@ import { TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TableColumn } from '@swimlane/ngx-datatable';
 import { isArray } from 'rxjs/internal/util/isArray';
+import { Page } from '../common/models/page';
 
 export class CityViewUtil {
 
     public static getCityGridColumnList(cellTemplates: TemplateRef<any>[]): TableColumn[] {
         let columnList = [
             {
-              prop: 'action', name: 'Action', width: 20, minWidth: 50, cellTemplate: cellTemplates[0], cellClass: 'truncate-cell',
+              prop: 'action', name: 'Action', width: 10, minWidth: 50, cellTemplate: cellTemplates[0], cellClass: 'truncate-cell',
               headerTemplate: '', frozenLeft: true, sortable: false, resizeable: false
            },
             {
@@ -52,5 +53,12 @@ export class CityViewUtil {
         }, {});
         return formValue;
       }
-
+    
+    public static getPagingRequest(sendData:any, pageInfo:Page): any {
+         return {
+           pageNumber:pageInfo.pageNumber,
+           pageSize: pageInfo.pageSize,
+           ...sendData
+         }
+    }
 }
