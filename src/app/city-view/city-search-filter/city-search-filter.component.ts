@@ -9,28 +9,33 @@ import { CityViewUtil } from '../city-view-util';
   styleUrls: ['./city-search-filter.component.scss']
 })
 export class CitySearchFilterComponent implements OnInit {
-  
+
+  // ==================================  DEFINE EVENT START ===========================================
   @Output() searchSubmit = new EventEmitter<any>();
+  // ==================================  DEFINE EVENT END =============================================
+  // ==================================  DEFINE ATTRIBUTES START ======================================
   public citySearchform: any;
-
+  // ==================================  DEFINE ATTRIBUTES END ========================================
   constructor(
-    public dialog: MatDialog) { 
-
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.citySearchform = this.createFormGroup();
   }
 
-  private createFormGroup() : FormGroup {
+  // =================================== HTML DIRECT CALL METHODS START =====================================
+  public onSubmit() {
+    const formValues = CityViewUtil.getNonEmptyFormValues(this.citySearchform);
+    this.searchSubmit.emit(formValues);
+  }
+  // =================================== HTML DIRECT CALL METHODS END =====================================
+  // ========================================= OTHER METHODS START =============================================
+  private createFormGroup(): FormGroup {
     const groups: any = {};
     groups['cityName'] = new FormControl();
     return new FormGroup(groups);
   }
-
-  public onSubmit() {
-      const formValues =  CityViewUtil.getNonEmptyFormValues(this.citySearchform);
-      this.searchSubmit.emit(formValues);
-  }
-  
+ // ========================================= OTHER METHODS END =============================================
+ 
 }

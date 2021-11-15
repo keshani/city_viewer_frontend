@@ -1,1 +1,1 @@
-export const SERVICE_URL = 'http://localhost:9092';
+export const SERVICE_URL = 'http://localhost:9092/cityviewer/v1';

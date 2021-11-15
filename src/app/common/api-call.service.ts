@@ -18,14 +18,12 @@ export enum RequestMethods {
 export class ApiCallService {
 
   headers: HttpHeaders;
-
   constructor(
     private http: HttpClient,
   )
-  
   {
     this.headers = new HttpHeaders({
-      'x-username': 'tesoro',
+      'x-username': 'city_fetch',
     });
   }
 
@@ -33,19 +31,20 @@ export class ApiCallService {
       let fullUrl = SERVICE_URL+url;
       switch (method) {
         case 'GET':
-          return this.createGetRequest(fullUrl,configObject);
+          return this.createGetRequest(fullUrl,configObject, this.headers);
         case 'PUT':
-            return this.createPutRequest(fullUrl,configObject);
+            return this.createPutRequest(fullUrl,configObject,this.headers);
         default:
+          configObject['headers'] = this.headers;
           return this.http.request(method, fullUrl, configObject).pipe(catchError(error => throwError(error)));
       }
   }
 
-  private createGetRequest( url:string, configObject:any)  : Observable<Object>  {
-   return this.http.get(url, {params:configObject}); 
+  private createGetRequest( url:string, configObject:any,  headers1: HttpHeaders)  : Observable<Object>  {
+   return this.http.get(url, {params:configObject, headers:headers1}); 
   }
-  private createPutRequest( url:string, configObject:any)  : Observable<Object>  {
-    return this.http.put(url, configObject); 
+  private createPutRequest( url:string, configObject:any, headers1: HttpHeaders)  : Observable<Object>  {
+    return this.http.put(url, configObject, {headers:headers1}); 
    }
 
 }

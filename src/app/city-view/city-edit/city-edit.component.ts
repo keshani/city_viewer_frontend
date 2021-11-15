@@ -12,10 +12,11 @@ import { CityService } from '../city.service';
   styleUrls: ['./city-edit.component.scss']
 })
 export class CityEditComponent implements OnInit {
+  // ==================================  DEFINE ATTRIBUTES START ===========================================
   public cityEditform: any;
   public selectedRecord: any;
   public cityImageUrl:any;
-
+  // ==================================  DEFINE ATTRIBUTES END ========================================
   constructor( @Inject(MAT_DIALOG_DATA) public dialogData: any,
         public dialog: MatDialog,
         private mdDialogRef: MatDialogRef<CityEditComponent>,
@@ -30,6 +31,32 @@ export class CityEditComponent implements OnInit {
     this.setPassData(this.dialogData);
   }
 
+  // =================================== HTML DIRECT CALL METHODS START =====================================
+  public onSubmit() {
+     const formValues =  CityViewUtil.getNonEmptyFormValues(this.cityEditform);
+     this.cityService.updateCityInfo(formValues).subscribe(result => {
+      this.snackBarService.openSnackBar({
+        status: SnackStatus.healthy.status,
+        message: 'Record Update Succesfully',
+        closable: true, 
+        description: ``
+      }, 5000, SnackStatus.healthy.panelClass);
+      this.mdDialogRef.close(formValues);
+     }, error => {
+      this.snackBarService.openSnackBar({
+        status: SnackStatus.error.status,
+        message: `Internal Server Error`,
+        closable: true,
+        description: ''
+      }, 0, SnackStatus.error.panelClass);
+    });
+  }
+
+  public cancel() {
+    this.mdDialogRef.close();
+  }
+ // =================================== HTML DIRECT CALL METHODS END =====================================
+ // ========================================= OTHER METHODS START =============================================
   private createFormGroup() : FormGroup {
     const groups: any = {};
     groups['id'] = new FormControl();
@@ -41,23 +68,6 @@ export class CityEditComponent implements OnInit {
     return new FormGroup(groups);
   }
 
-  public onSubmit() {
-     const formValues =  CityViewUtil.getNonEmptyFormValues(this.cityEditform);
-     this.cityService.updateCityInfo(formValues).subscribe(result => {
-      this.snackBarService.openSnackBar({
-        status: SnackStatus.healthy.status,
-        message: 'Record Update Succesfully',
-        closable: true, 
-        description: ``
-      }, 5000, SnackStatus.error.panelClass);
-        this.mdDialogRef.close(formValues);
-     })
-  }
-
-  public cancel() {
-    this.mdDialogRef.close();
-  }
-
   private setPassData(data: any) {
     this.selectedRecord = data.selectedRecord;
     this.cityImageUrl = this.selectedRecord.cityImages[0];
@@ -66,5 +76,5 @@ export class CityEditComponent implements OnInit {
       country: this.selectedRecord.country, latitude: this.selectedRecord.latitude, longitude: this.selectedRecord.longitude
     });
   }
-
+ // ========================================= OTHER METHODS END =============================================
 }
