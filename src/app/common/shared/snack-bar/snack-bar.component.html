@@ -1,8 +1,8 @@
 <div class="snack-bar">
     <div elem="icons">
-      <mat-icon *ngIf="data.status === 'healthy'" fill="red" svgIcon="healthy"></mat-icon>
-      <mat-icon *ngIf="data.status === 'error'" svgIcon="error"></mat-icon>
-      <mat-icon *ngIf="data.status === 'information'" svgIcon="information"></mat-icon>
+      <mat-icon *ngIf="data.status === 'healthy'" fill="red"></mat-icon>
+      <mat-icon *ngIf="data.status === 'error'"></mat-icon>
+      <mat-icon *ngIf="data.status === 'information'"></mat-icon>
       <span *ngIf="data.status === 'loading'" class="buttonDownload"></span>
       <span *ngIf="data.status === 'uploading'" class="buttonDownload uploadIcon"></span>
     </div>
