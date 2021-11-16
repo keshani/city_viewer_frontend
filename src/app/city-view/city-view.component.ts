@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,7 +16,7 @@ import { CityService } from './city.service';
   templateUrl: './city-view.component.html',
   styleUrls: ['./city-view.component.scss']
 })
-export class CityViewComponent implements OnInit, AfterViewInit {
+export class CityViewComponent implements OnInit, AfterViewInit, OnDestroy {
   // ==================================  DEFINE CHILD COMPORNENT START ====================================
   @ViewChild('viewMenuTmpl')
   public viewMenuTmpl: any;
@@ -48,6 +48,10 @@ export class CityViewComponent implements OnInit, AfterViewInit {
     this.createCityGrid();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   // =================================== HTML DIRECT CALL METHODS START =====================================
   public setPage(pageInfo: any) {
     this.page.pageNumber = pageInfo.offset;

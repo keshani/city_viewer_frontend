@@ -56,6 +56,7 @@ export class DocumentUploaderComponent implements OnInit, OnDestroy {
       closable: true,
       description: 'This may take few minutes.'
     }, 0, SnackStatus.uploading.panelClass);
+    
     const fd = new FormData();
     fd.append('uploadFile', this.fileToUpload);
     fd.append('belongsToId', this.belongsTo);
@@ -63,7 +64,7 @@ export class DocumentUploaderComponent implements OnInit, OnDestroy {
     fd.append('id', this.docId);
     const configBody = { body: fd };
 
-    this.documentService.uploadDocument(configBody).subscribe(data => {
+    this.documentService.uploadDocument(configBody).pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.mdDialogRef.close(true);
       this.snackBarService.closeSnackBar(uploadingSnackBar);
       this.snackBarService.openSnackBar({

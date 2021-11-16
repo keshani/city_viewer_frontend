@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { SnackStatus } from 'src/app/common/models/snackbar';
 import { SnackBarService } from 'src/app/common/shared/snack-bar/snack-bar.service';
 import { CityViewUtil } from '../city-view-util';
@@ -11,11 +13,12 @@ import { CityService } from '../city.service';
   templateUrl: './city-edit.component.html',
   styleUrls: ['./city-edit.component.scss']
 })
-export class CityEditComponent implements OnInit {
+export class CityEditComponent implements OnInit, OnDestroy {
   // ==================================  DEFINE ATTRIBUTES START ===========================================
   public cityEditform: any;
   public selectedRecord: any;
   public cityImageUrl:any;
+  private destroy$ = new Subject();
   // ==================================  DEFINE ATTRIBUTES END ========================================
   constructor( @Inject(MAT_DIALOG_DATA) public dialogData: any,
         public dialog: MatDialog,
@@ -25,16 +28,20 @@ export class CityEditComponent implements OnInit {
     ) { 
 
   }
-
   ngOnInit(): void {
     this.cityEditform = this.createFormGroup();
     this.setPassData(this.dialogData);
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   // =================================== HTML DIRECT CALL METHODS START =====================================
   public onSubmit() {
      const formValues =  CityViewUtil.getNonEmptyFormValues(this.cityEditform);
-     this.cityService.updateCityInfo(formValues).subscribe(result => {
+     this.cityService.updateCityInfo(formValues).pipe(takeUntil(this.destroy$)).subscribe(result => {
       this.snackBarService.openSnackBar({
         status: SnackStatus.healthy.status,
         message: 'Record Update Succesfully',
