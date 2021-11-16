@@ -6,3 +6,11 @@
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-dialog-container {
+    background-color: rgb(244, 245, 243) !important;
+    color: rgb(10, 10, 10) !important
+ }
+ ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: green !important;
+  }

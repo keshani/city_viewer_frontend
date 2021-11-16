@@ -1,40 +1,31 @@
+<div class="container-fluid py-3">
 
-<div block = "cityViewMainPage">
-    <div elem = "header"> 
-        <div elem = "hederTitle"> City Viewer</div>
-    </div>
-    <div elem = "searchFilter"> 
-        <div elem = "title"> Search Filters</div>
-        <app-city-search-filter (searchSubmit) = "onSearch($event)"></app-city-search-filter>
-    </div>
-    <div elem = "mainCityGrid">
-        <ngx-datatable class="material"
-        [rows]="dataSource"
-        [columns]="columns"
-        [columnMode]="'force'"
-        [headerHeight]="50" 
-        [footerHeight]="50"
-        [rowHeight]="45" 
-        [externalPaging]="true"
-        [count]="page.totalRowCount"
-        [offset]="page.pageNumber"
-        [limit]="page.pageSize"
-        (page)="setPage($event)">
+    <div class="city-view-main pt-3">
+        <div class="header">
+            <div class="heder-title">
+                <h1>City Viewer</h1>
+            </div>
+        </div>
+        <div class="searchFilter">
+            <app-city-search-filter (searchSubmit)="onSearch($event)"></app-city-search-filter>
+        </div>
+        <div class="main-city-grid">
+            <ngx-datatable class="material mat-data-table" [rows]="dataSource" [columns]="columns" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="45" [externalPaging]="true"
+                [count]="page.totalRowCount" [offset]="page.pageNumber" [limit]="page.pageSize"
+                (page)="setPage($event)">
 
-        <ngx-datatable-column elem="column" *ngFor="let col of columns; let i = index"
-        [width]="col.width"
-        [name]="col.name"
-        [prop]="col.prop"
-        [cellTemplate]="col.cellTemplate"
-        [headerTemplate]="col.headerTemplate"
-        [frozenLeft]="col.frozenLeft">
-      </ngx-datatable-column>
+                <ngx-datatable-column class="column" *ngFor="let col of columns; let i = index" [width]="col.width"
+                    [name]="col.name" [prop]="col.prop" [cellTemplate]="col.cellTemplate"
+                    [headerTemplate]="col.headerTemplate" [frozenLeft]="col.frozenLeft">
+                </ngx-datatable-column>
 
-      <ng-template #viewMenuTmpl let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-        <mat-icon  (click)="goToEditCityInfo(row)">visibility</mat-icon>
-        <mat-icon (click)="goToUploadDocumnt(row)">file_upload</mat-icon>
-     </ng-template>
-      
-      </ngx-datatable>
+                <ng-template #viewMenuTmpl let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                    <mat-icon class="visibility" (click)="goToEditCityInfo(row)">visibility</mat-icon>
+                    <mat-icon (click)="goToUploadDocumnt(row)">file_upload</mat-icon>
+                </ng-template>
+
+            </ngx-datatable>
+        </div>
     </div>
 </div>

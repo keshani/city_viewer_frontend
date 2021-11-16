@@ -1,12 +1,13 @@
-<div block="csv-documents">
-    <div elem="doc-heading">
-        <h2>{{screenName}}</h2>
+<div class="upload-pane">
+    <div class="header-row mb-4 d-flex justify-content-center align-items-center">
+        <h2 class="w-100 mb-0">{{screenName}}</h2>
+        <span class="close material-icons" (click)="cancel()">close</span>
     </div>
     <div elem="doc-description">
         <p elem="required-fields" [innerHTML]="description"></p>
     </div>
     <div elem="doc-content">
-        <div elem="doc-upload" appDnd (fileDropped)="onFileDropped($event)">
+        <div elem="doc-upload" (fileDropped)="onFileDropped($event)">
             <div elem="file-item" *ngIf='fileToUpload else elseBlock'>
                    <p>{{fileToUpload?.name}} - <mat-icon elem="close" svgIcon="close" (click)="removeFile()"></mat-icon></p>
             </div>
@@ -21,8 +22,10 @@
                 [ngClass]="(fileToUpload)? 'file-selected' : 'custom-file-input'" title=" ">
         </div>
     </div>
-    <div elem="control" class="d-flex align-items-center justify-content-end">
-        <button type="button" (click)="cancel()" elem="cancel-btn">CANCEL</button>
-        <button type="button" (click)="onUpload()" elem="upload-btn" [disabled]='!(fileToUpload)'>UPLOAD</button>
+    <div class="w-100 d-flex justify-content-end mt-3">
+        <div class="d-block w-100">
+            <button mat-flat-button type="button" class="button primary mr-2 "  (click)="onUpload()"[disabled]='!(fileToUpload)'>UPLOAD</button>
+            <button mat-flat-button type="button" class="button primary" (click)="cancel()">CANCEL</button>
+        </div>
     </div>
 </div>

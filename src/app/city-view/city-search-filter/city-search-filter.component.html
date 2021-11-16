@@ -1,12 +1,12 @@
-<div block="search-form">
-    <form elem="master-form" novalidate [formGroup]="citySearchform" (ngSubmit)="onSubmit()">
+<div class="search-form mb-4">
+    <form elem="master-form" class="d-flex align-items-center" novalidate [formGroup]="citySearchform" (ngSubmit)="onSubmit()">
         <div >
             <mat-form-field appearance="outline" color="primary">
                 <mat-label>City Name</mat-label>
                 <input matInput placeholder="Placeholder" formControlName = "cityName">
               </mat-form-field>  
         </div>
-        <div block="controls">
+        <div class="controls">
               <button mat-flat-button type="submit" class="button primary">Search</button>
           </div>
     </form>

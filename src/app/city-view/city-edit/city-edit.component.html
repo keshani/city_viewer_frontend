@@ -1,31 +1,51 @@
-<div block="editPane">
+<div class="edit-pane">
+    <div class="header-row mb-4 d-flex justify-content-center align-items-center">
+        <h2 class="w-100 mb-0">City Info Edit</h2>
+        <span class="close material-icons" (click)="cancel()">close</span>
+    </div>
     <form elem="master-form" novalidate [formGroup]="cityEditform" (ngSubmit)="onSubmit()">
-        <div >
-            <mat-form-field appearance="outline" color="primary">
-                <mat-label>City Name</mat-label>
-                <input matInput formControlName = "cityName">
-            </mat-form-field>  
-            <mat-form-field appearance="outline" color="primary">
-                <mat-label>City Description</mat-label>
-                <input matInput formControlName = "cityDescription">
-            </mat-form-field>  
-            <mat-form-field appearance="outline" color="primary">
-                <mat-label>Country</mat-label>
-                <input matInput formControlName = "country">
-            </mat-form-field>  
-            <mat-form-field appearance="outline" color="primary">
-                <mat-label>Latitude</mat-label>
-                <input matInput placeholder="Placeholder" formControlName = "latitude">
-            </mat-form-field>  
-            <mat-form-field appearance="outline" color="primary">
-                <mat-label>Longitude</mat-label>
-                <input matInput placeholder="Placeholder" formControlName = "longitude">
-            </mat-form-field>  
-            <img src="{{cityImageUrl.docPath}}"  height="500px"/>
+        <div class="row city-edit-wrapper">
+            <div class="col-lg-3 col-md-6">
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>City Name</mat-label>
+                    <input matInput formControlName = "cityName">
+                </mat-form-field> 
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>City Description</mat-label>
+                    <input matInput formControlName = "cityDescription">
+                </mat-form-field> 
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>Country</mat-label>
+                    <input matInput formControlName = "country">
+                </mat-form-field>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>Latitude</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName = "latitude">
+                </mat-form-field> 
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <mat-form-field appearance="outline" color="primary">
+                    <mat-label>Longitude</mat-label>
+                    <input matInput placeholder="Placeholder" formControlName = "longitude">
+                </mat-form-field>  
+            </div>
         </div>
-        <div block="controls">
-              <button mat-flat-button type="submit" class="button primary">SAVE CHANGES</button>
-              <button mat-flat-button type="button" class="button primary" (click)="cancel()">CANCEL</button>
-          </div>
+        <div class="row">
+            <div class="col-12">
+                <img class="d-block mx-auto" src="{{cityImageUrl.docPath}}"/>
+            </div>
+        </div>
+        <div class="w-100 d-flex justify-content-end mt-3">
+            <div class="d-block w-100">
+                <button mat-flat-button type="submit" class="button primary mr-2">SAVE CHANGES</button>
+                <button mat-flat-button type="button" class="button primary" (click)="cancel()">CANCEL</button>
+            </div>
+        </div>
     </form>
 </div>

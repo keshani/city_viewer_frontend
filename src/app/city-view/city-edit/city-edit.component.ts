@@ -40,7 +40,7 @@ export class CityEditComponent implements OnInit {
         message: 'Record Update Succesfully',
         closable: true, 
         description: ``
-      }, 5000, SnackStatus.healthy.panelClass);
+      }, 0, SnackStatus.healthy.panelClass);
       this.mdDialogRef.close(formValues);
      }, error => {
       this.snackBarService.openSnackBar({

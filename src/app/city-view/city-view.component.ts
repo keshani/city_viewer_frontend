@@ -78,6 +78,8 @@ export class CityViewComponent implements OnInit, AfterViewInit {
     const dialogConfig: MatDialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.data = sendData;
+    dialogConfig.panelClass = 'city-edit-panel'
+    dialogConfig.width='60%'
 
     const dialogRef = this.dialog.open(CityEditComponent, dialogConfig);
     dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {

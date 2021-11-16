@@ -1,0 +1,11 @@
+::ng-deep .main-city-grid{
+    .mat-data-table{
+        .datatable-body{
+            height: calc(100vh - 300px) !important;
+            overflow-y: auto;
+        }
+    }
+}
+.visibility {
+    margin-right: 10px;
+}

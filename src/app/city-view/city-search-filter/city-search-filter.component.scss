@@ -5,3 +5,16 @@
 ::ng-deep .mat-form-field-label {
     color: rgba(0,0,0,.6)!important;
 }
+::ng-deep .search-form{
+    .mat-form-field-wrapper{
+        padding-bottom: 0;
+    }
+    .controls{
+        margin-left: 15px;
+        button{
+            // height: 51px;
+            // line-height: 51px;
+            min-width: 120px;
+        }
+    }
+}

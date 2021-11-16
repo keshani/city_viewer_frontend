@@ -4,50 +4,10 @@
     margin-top: 73px;
     font-size: 14px;
     width: 440px;
+    height: auto;
     display: flex;
 }
-.snack-bar {
-    display: flex;
-    // align-items: stretch;
-    // min-height: 100px;
-    &__icons {
-        width: 18px;
-        padding: 13px 0px;
-        flex-shrink: 0;
-    }
-    &__description {
-        // width: calc(100% - 150px);
-        color: #fff;
-        margin-left: 12px;
-        flex-shrink: 1;
-        h3 {
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
-            margin-top: 13px;
-        }
-    }
-    &__close {
-        flex-shrink: 0;
-        // float: right;
-        width: 18px;
-        // margin-right: 36px;
-        // margin-top: 37px;
-        position: absolute;
-        right: 16px;
-        top: 10px;
-        button {
-            width: 18px;
-            color: #508be4;
-            background-color: transparent;
-            font-size: 16px;
-        }
-    }
-    .mat-icon {
-        width: 18px;
-        height: 18px;
-    }
-}
+
 .snack-bar:hover {
     cursor: pointer;
 }
