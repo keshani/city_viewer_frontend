@@ -1,1 +1,3 @@
-export const SERVICE_URL = 'http://localhost:9092/cityviewer/v1';
+import { environment } from "src/environments/environment";
+
+export const SERVICE_URL = environment.url;
